@@ -19,7 +19,7 @@ class ProductController {
             const newProduct = await productService.addProduct({ nombre, precio, descripcion });
             res.status(201).json(newProduct);
         } catch (error) {
-            console.error(error);
+            console.error("ERROR EN createProduct:", error);
             res.status(500).json({ message: 'Error al crear el producto' });
         }
     }
@@ -31,7 +31,7 @@ class ProductController {
             const updatedProduct = await productService.modifyProduct(id, { nombre, precio, descripcion });
             res.json(updatedProduct);
         } catch (error) {
-            console.error(error);
+            console.error("ERROR EN updateProduct:", error);
             res.status(500).json({ message: 'Error al actualizar el producto' });
         }
     }
@@ -42,7 +42,7 @@ class ProductController {
             await productService.removeProduct(id);
             res.sendStatus(204);
         } catch (error) {
-            console.error(error);
+            console.error("ERROR EN deleteProduct:", error);
             res.status(500).json({ message: 'Error al eliminar el producto' });
         }
     }
