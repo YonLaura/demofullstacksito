@@ -2,24 +2,24 @@ const productModel = require('../models/productModels');
 
 class ProductService {
     async getProducts() {
-        return productModel.getAllProducts(); // No es necesario await aquí
+        return productModel.getAllProducts(); 
     }
 
     async getProductById(id) {
-        return productModel.getProductById(id); // No es necesario await aquí
+        return productModel.getProductById(id); 
     }
 
     async addProduct(data) {
-        return productModel.createProduct(data); // No es necesario await aquí
+        return productModel.createProduct(data); 
     }
 
     async modifyProduct(id, data) {
-        return productModel.updateProduct(id, data); // No es necesario await aquí
+        return productModel.updateProduct(id, data); 
     }
 
     async removeProduct(id) {
         await productModel.deleteProduct(id);
-        return { message: 'Producto eliminado' }; // Agregado un mensaje de éxito
+        return { message: 'Producto eliminado' }; 
     }
 }
 
