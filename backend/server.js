@@ -2,7 +2,7 @@
 // importamos las dependencias
 const express = require('express'); // para el manejo de solicitudes http
 const cors = require('cors'); // habilita los cors en la aplicación para la comunicación
-const productRoutes = require('./routers/productRoutes');
+const productRoutes = require('./routers/productRouters');
 
 class Server { // clase para encapsular la configuración y el arranque del servidor
   constructor() {
