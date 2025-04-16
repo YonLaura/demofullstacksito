@@ -13,4 +13,4 @@ router.put('/:id', (req, res) => productController.updateProduct(req, res));
 
 router.delete('/:id', (req, res) => productController.deleteProduct(req, res));
 
-module.exports = router;
+module.exports = router; 
