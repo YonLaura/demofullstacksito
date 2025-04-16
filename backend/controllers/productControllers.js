@@ -1,50 +1,34 @@
-const productService = require('../services/productService')
+const productService = require('../services/productService');
 
 class ProductController {
-    async getProducts(req, res){
+    async getProducts(req, res) {
         try {
-            const products = await productService.
-            getProducts();
-            res.json(product);
+            console.log("Entrando a getProducts");
+            const products = await productService.getProducts();
+            console.log("Productos obtenidos:", products);
+            res.json(products);
         } catch (error) {
-            console.error(error);
-            res.status(500).json({nessage: 'Error al obetner los productos' });
+            console.error("ERROR EN getProducts:", error);
+            res.status(500).json({ message: 'Error al obtener los productos' });
         }
     }
 
-
-    async getProductById(req, res) {
-        const { id } = req.params;
-        try {
-            const product = await productService.getProductById(id);
-            if(!product) {
-                return res.status(404).json({message: 'Producto no encontrado'});
-            }
-            res.json(product);
-        }catch (error) {
-            console.error(error);
-            res.status(500).json({ message: 'Error al obtener el producto'})
-        }
-    }
-
-
-    async createProduct (req, res) {
+    async createProduct(req, res) {
         try {
             const { nombre, precio, descripcion } = req.body;
-            const newProduct = await productService.addProduct({nombre, precio, descripcion});
-            res.status(201).json(newProduct); 
+            const newProduct = await productService.addProduct({ nombre, precio, descripcion });
+            res.status(201).json(newProduct);
         } catch (error) {
             console.error(error);
-            res.status(500).json({ nessage: 'Error al crear el producto'});
+            res.status(500).json({ message: 'Error al crear el producto' });
         }
     }
-
 
     async updateProduct(req, res) {
         try {
-            const {id} = req.params;
-            const {nombre, precio, descripcion} =req.body;
-            const updatedProduct = await productService.modifyProduct(id, { nombre, precio, descripcion});    
+            const { id } = req.params;
+            const { nombre, precio, descripcion } = req.body;
+            const updatedProduct = await productService.modifyProduct(id, { nombre, precio, descripcion });
             res.json(updatedProduct);
         } catch (error) {
             console.error(error);
@@ -52,15 +36,16 @@ class ProductController {
         }
     }
 
-
     async deleteProduct(req, res) {
-        try{
-            const {id} = req.params;
+        try {
+            const { id } = req.params;
             await productService.removeProduct(id);
             res.sendStatus(204);
-        }catch (error) {
+        } catch (error) {
             console.error(error);
-            res.statys(500).json ({ message: 'Error al eliminar el producto' });
+            res.status(500).json({ message: 'Error al eliminar el producto' });
         }
     }
 }
+
+module.exports = new ProductController();
